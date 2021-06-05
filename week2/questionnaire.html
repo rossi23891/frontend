@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кто твой котэ</title>
+    <link rel="shotcut icon" href="https://image.flaticon.com/icons/png/512/3135/3135604.png" type="image/png">
+    <style>
+        form {
+            font-size: 16pt;
+            /* Размер шрифта в пунктах */
+            font-weight: bold;
+
+        }
+
+        input {
+            background-color: lemonchiffon;
+            border-color: brown;
+            border-radius: 5pt;
+            height: 20pt;
+            width: 200pt;
+        }
+
+        textarea {
+            background-color: lemonchiffon;
+            border-color: brown;
+            border-radius: 5pt;
+        }
+
+        select {
+            background-color: lemonchiffon;
+            border-color: brown;
+            border-radius: 5pt;
+            height: 20pt;
+            width: 80pt;
+        }
+    </style>
+</head>
+
+<body style="background-color:#be5010;margin-top:0px;margin-left:0px;color:rgb(252, 244, 235);">
+    <h1>
+        <center><b>Расскажите нам о вашем питомце</b>
+            <center>
+    </h1>
+    <img src="https://image.freepik.com/free-vector/fat-cat-peeping-out_124827-97.jpg" alt=" Fat Cat" align="right"
+        vspace="5" hspace="30" height="400" width="450">
+    <form>
+        Как его зовут:
+        <input type="text" name="pet" /><br />
+        ФИО владельца: <input type="text" name="owner" /><br />
+        Телефон владельца:<input type="text" name="ownerphone" />
+        <p>Порода питомца:
+            <select>
+                <option value="1">Персидская</option>
+                <option value="2">Британская</option>
+                <option value="3">Дворянская</option>
+                <option value="4">Другая</option>
+            </select>
+            <label for="breed2">&nbsp;Если вы выбрали "Другая", укажите породу вашего питомца: </label>
+            <input type="text" id="breed2" />
+        </p>
+        <p> Чем питается ваш зверь: </p>
+        <input type="checkbox" name="feed" value="1" />
+        сухой корм<br />
+        <input type="checkbox" name="feed" value="2" />
+        влажный корм<br />
+        <input type="checkbox" name="feed" value="3" />
+        размоченный корм<br />
+
+        <p>Пол питомца:</p>
+        <p><input type="radio" name="sex" value="male" /> Самец</p>
+        <p><input type="radio" name="sex" value="female" /> Самка</p>
+
+        <p>Комментарий владельца:</p>
+        <p><textarea name="comments" rows="5" cols="50"></textarea></p>
+        Фото вашего питомца: <input type="file" name="photo" />
+
+
+        <p><input type="submit" /></p>
+
+    </form>
+
+</body>
+
+</html>
