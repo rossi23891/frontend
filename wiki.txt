@@ -1,0 +1,38 @@
+Тег <output> - HTML5
+
+Описание
+Определяет область в которую выводится информация, преимущественно с помощью скриптов.
+
+Синтаксис
+<output>
+</output>
+Атрибуты
+for
+Определяет идентификатор одного и более элементов для связывания с тегом <output>.
+form
+Задает имя формы, которой принадлежит область для вывода.
+name
+Задает уникальное имя элемента.
+Закрывающий тег
+Обязателен.
+
+Пример
+
+HTML5IE 10CrOpSaFx
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>output</title>
+ </head>
+ <body>
+  <form oninput="result.value=(cm.value/2.54).toFixed(2)">
+    <p>Введите длину в сантиметрах: 
+    <input type="number" name="cm" autofocus></p>
+    <p>Длина в дюймах: <output name="result">0</output></p>
+  </form>
+ </body>
+</html>
+
+ссылка на ресурс, где брала информацию - http://htmlbook.ru/html/output
