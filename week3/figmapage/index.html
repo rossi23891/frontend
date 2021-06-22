@@ -6,56 +6,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FigmaPage</title>
-    <style>
-        input {
-            background-color: #62D0DF;
-            border-radius: 50pt;
-            height: 30pt;
-            width: 120pt;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 
-<body style="background-color:#F4F9E2;margin-left:179px;">
+<body>
     <div>
-        <img src="assets/images/Thrivetalk.png" alt="logo" width="95px" height="17px" />
+        <img src="assets/images/Thrivetalk.png" alt="logo" id="logo" />
     </div>
-    <form align="right">
-        <input type="button" value="Contact us">
-    </form>
-    <nav style="font-weight: bold;text-align:right;margin-right:250px;">
-        <p>Home &nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;Services&nbsp;&nbsp;&nbsp;Blog</p>
+    <nav>
+        <a class="menu" href="home.html">Home</a>
+        <a class="menu" href="about.html">About</a>
+        <a class="menu" href="services.html">Services</a>
+        <a class="menu" href="blog.html">Blog</a>
     </nav>
-    <section></section>
-    <object type="image/svg" data="assets/images/linkedin-sales-navigator-406825.svg" align="right" vspace="5"
-        width="1128px" height="750px">
-        <img src="assets/images/linkedin-sales-navigator-406825.svg" alt="people" align="right" vspace="5"
-            width="1128px" height="750px">
+    <form>
+        <input type="button" value="Contact us" id="contact_button">
+    </form>
+
+    <object type="image/svg" data="assets/images/linkedin-sales-navigator-406825.svg" class="sales_img">
+        <img src="assets/images/linkedin-sales-navigator-406825.svg" alt="people" class="sales_img">
     </object>
     <article>
         <div>
-            <img src="assets/images/Thrivetalk.png" alt="logo" width="95px" height="17px" />
+            <img src="assets/images/Thrivetalk.png" alt="logo" id="logo2" />
         </div>
-        <h1>HELPING YOU THRIVE<br>IN ALL AREAS OF LIFE</h1>
-        <p style="max-width:469px;">Our highly talented therapists can help you<br> with a range of issues including
-            relationships,<br> sex, PTSD,
-            depression, social anxiety, or even<br> just caring for yourself more.
+        <h1>Helping you thrive in all areas of life</h1>
+        <p>Our highly talented therapists can help you with a range of issues including relationships, sex, PTSD,
+            depression, social anxiety,
+            or even just caring for yourself more.
         </p>
     </article>
-    <section></section>
-    <article>
-        <p>
-            <div
-                style="background-image:url('assets/images/Rectangle.png');width: 150px; height: 50px;color:white;text-align:center;">
-                WHO AM I
-            </div>
-            &nbsp;&nbsp;&nbsp;
-            <object type=" image/png" data="assets/images/do.png" vspace="5" width="110px" height="18px">
-                <img src="assets/images/do.png" alt="do" vspace="5" width="110px" height="18px">
-            </object>
-        </p>
-    </article>
+    <div>
+        <form>
+            <input type="button" value="Who am i" class="who_button">
+        </form>
+        <form id="do_button">
+            <input type="button" value="What do i do" class="who_button">
+        </form>
+    </div>
 </body>
 
 </html>
