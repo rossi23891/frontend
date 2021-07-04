@@ -1,0 +1,45 @@
+.page_container {
+    display: grid;
+    grid-template-columns: 34% 1fr;
+    grid-template-rows: 1fr 5fr 1fr;
+    font-family: 'Work Sans', sans-serif;
+    height: 99vh;
+}
+
+.header {
+    display: grid;
+    text-transform: uppercase;
+    color: #22356F;
+    grid-area: 1/2/2/3;
+    align-items: flex-end;
+}
+
+.main {
+    display: block;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1.5;
+    grid-area: 2/2/3/3;
+    padding-top: 250px;
+    padding-right: 80px;
+}
+
+.footer {
+    display: grid;
+    text-transform: uppercase;
+    color: #FAB63E;
+    font-weight: bolder;
+    font-size: 16px;
+    grid-area: 3/2/4/3;
+}
+
+.aside_img {
+    display: grid;
+    grid-area: 1/1/4/2;
+    align-content: center;
+    align-items: center;
+}
+
+#sales {
+    height: 98vh;
+}
