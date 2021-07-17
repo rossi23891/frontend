@@ -1,0 +1,117 @@
+@media screen and (min-width:1024px) {
+    .container {
+        display: grid;
+        color: blue;
+        text-align: center;
+        font-weight: bold;
+        width: 100vw;
+        height: 96vh;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: 10% 1fr 10%;
+        grid-gap: 2px;
+        grid-template-areas:
+            "h h h h h h h h h h h h"
+            "m m m m m m m m c c c c"
+            "f f f f f f f f f f f f";
+
+    }
+
+    .footer {
+        grid-area: f;
+        background-color: orange;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 1%;
+        justify-content: space-around;
+    }
+
+    .footer_part {
+        background-color: greenyellow;
+    }
+
+    .aside {
+        grid-area: c;
+        background-color: lightblue;
+    }
+
+    .main {
+        grid-area: m;
+        background-color: yellow;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 60% 1fr 1fr;
+        grid-gap: 1%;
+    }
+}
+
+@media screen and (max-width:1023px) {
+    .footer {
+        display: none;
+    }
+
+    .aside {
+        display: none;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container {
+        color: blue;
+        text-align: center;
+        font-weight: bold;
+        width: 100vw;
+        height: 96vh;
+    }
+
+    .header {
+        height: 16vh;
+        width: 96vw;
+    }
+
+    .main_part1 {
+        background-color: lightpink;
+        border: 1px solid blue;
+        height: 25vh;
+        width: 96vw;
+    }
+
+    .main_part2 {
+        background-color: lightpink;
+        border: 1px solid blue;
+        height: 25vh;
+        width: 96vw;
+    }
+
+    .main_part3 {
+        background-color: lightpink;
+        height: 27vh;
+        width: 96vw;
+        border: 1px solid blue;
+    }
+
+}
+
+.header {
+    grid-area: h;
+    background-color: gray;
+}
+
+.main_part1 {
+    background-color: lightpink;
+    grid-area: 2/1/3/2;
+    border: 1px solid blue;
+}
+
+.main_part2 {
+    background-color: lightpink;
+    grid-area: 2/2/3/3;
+    border: 1px solid blue;
+}
+
+.main_part3 {
+    background-color: lightpink;
+    grid-area: 3/1/4/3;
+}
