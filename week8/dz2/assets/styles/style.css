@@ -40,7 +40,11 @@ h5 {
 .nav-link {
     color: #5222d0;
     font: 1em;
-    margin-top: 10vh;
+    margin-top: 5vh;
+}
+
+.card {
+    height: 25%;
 }
 
 .card-img-top {
