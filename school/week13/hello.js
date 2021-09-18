@@ -1,6 +1,3 @@
-function hello() {
-    let name = prompt("Как тебя зовут?", "world");
-    alert(`Hello, ${name}!`);
+function sayHi2() {
+    alert(`Привет, ${document.getElementById("userName").value}`);
 }
-
-let sayHi = () => alert(`Привет, ${prompt("Как тебя зовут?", "world")}`);
