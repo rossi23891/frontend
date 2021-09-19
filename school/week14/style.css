@@ -1,0 +1,7 @@
+.test {
+    border: 1px solid blue;
+    background-color: cadetblue;
+    color: white;
+    display: flex;
+    margin: 5%;
+}
