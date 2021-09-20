@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #abe9f1;
+    height: 100vh;
+}
+
+.images {
+    margin-top: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#image {
+    max-width: 30vw;
+    width: 30vw;
+    border-radius: 7%;
+}
+
+.btn {
+    background-color: #3790c4;
+    border: 2px solid white;
+    color: rgba(255, 249, 249, 0.9);
+    border-radius: 10%;
+    font-size: 2vh;
+    font-weight: bold;
+    text-transform: uppercase;
+    height: 5vh;
+    width: 7vw;
+    margin-left: 3vw;
+    margin-right: 3vw;
+}
+
+.btn:hover {
+    background-color: #082933;
+}
