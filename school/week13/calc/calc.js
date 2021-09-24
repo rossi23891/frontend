@@ -13,7 +13,13 @@ function multiply() {
 }
 
 function divide() {
-    alert(getX() / getY());
+    let x = getX();
+    let y = getY();
+    if (y == 0) {
+        alert("На ноль делить нельзя!");
+        return;
+    }
+    alert(x / y);
 }
 
 function getX() {
