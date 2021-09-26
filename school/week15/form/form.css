@@ -1,0 +1,15 @@
+.reg {
+    margin: 3%;
+    font-weight: bold;
+    font-size: 2em;
+    color: rgb(17, 117, 101);
+}
+
+.btn-login,
+.form-check {
+    margin: 2%;
+}
+
+#error_text {
+    color: red;
+}
