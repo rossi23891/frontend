@@ -17,8 +17,24 @@ const FORD_MODELS = [
 
 const YEARS = [
     [2020, 1],
-    [2019, 0.8],
-    [2018, 0.6]
+    [2019, 0.98],
+    [2018, 0.97]
+];
+
+const COLORS = [
+    ["Metallic", 1],
+    ["Dark", 0.955],
+    ["White", 0.94]
+];
+
+const TRANSMISSIONS = [
+    ["Automatic", 1],
+    ["Mechanic", 0.93]
+];
+
+const DISTANCE = [
+    ["<100 km", 1],
+    [">100 km", 0.985]
 ];
 
 
@@ -63,14 +79,78 @@ modelSelected.addEventListener("change", (e) => {
     yearSelect.disabled = false;
 });
 
+let yearSelected = document.querySelector(".year");
+yearSelected.addEventListener("change", (e) => {
+    let currentSelection = e.currentTarget.value;
+    const colors = COLORS.map(color => color[0]);
+
+    const colorSelect = document.querySelector(".color");
+    colorSelect.innerHTML = "";
+    const defaultColor = document.createElement("option");
+    defaultColor.innerText = "Цвет";
+    colorSelect.appendChild(defaultColor);
+    colors.forEach(c => {
+        const newOption = document.createElement("option");
+        newOption.value = c;
+        newOption.innerText = c;
+        colorSelect.appendChild(newOption);
+    });
+    colorSelect.disabled = false;
+});
+
+let colorSelected = document.querySelector(".color");
+colorSelected.addEventListener("change", (e) => {
+    let currentSelection = e.currentTarget.value;
+    const transmissions = TRANSMISSIONS.map(tr => tr[0]);
+
+    const transmissionSelect = document.querySelector(".transmission");
+    transmissionSelect.innerHTML = "";
+    const transmissionDefault = document.createElement("option");
+    transmissionDefault.innerText = "Коробка передач";
+    transmissionSelect.appendChild(transmissionDefault);
+    transmissions.forEach(tr => {
+        const newOption = document.createElement("option");
+        newOption.value = tr;
+        newOption.innerText = tr;
+        transmissionSelect.appendChild(newOption);
+    });
+    transmissionSelect.disabled = false;
+});
+
+let trSelected = document.querySelector(".transmission");
+trSelected.addEventListener("change", (e) => {
+    let currentSelection = e.currentTarget.value;
+    const distances = DISTANCE.map(d => d[0]);
+
+    const distanceSelect = document.querySelector(".distance");
+    distanceSelect.innerHTML = "";
+    const distanceDefault = document.createElement("option");
+    distanceDefault.innerText = "Пробег";
+    distanceSelect.appendChild(distanceDefault);
+    distances.forEach(d => {
+        const newOption = document.createElement("option");
+        newOption.value = d;
+        newOption.innerText = d;
+        distanceSelect.appendChild(newOption);
+    });
+    distanceSelect.disabled = false;
+});
+
 function calculate() {
     const brand = document.querySelector(".brand").value;
     const model = document.querySelector(".model").value;
     const year = document.querySelector(".year").value;
+    const color = document.querySelector(".color").value;
+    const transmission = document.querySelector(".transmission").value;
+    const distance = document.querySelector(".distance").value;
+
     const modelInfo = getModelsForBrand(brand);
     const modelWithPrice = modelInfo.find(modelInfo => modelInfo[0] === model);
     const yearMultiplyer = YEARS.find(YEARS => YEARS[0] == year);
-    let finalPrice = calcTotalPrice(modelWithPrice[1], yearMultiplyer[1]);
+    const colorMultiplyer = COLORS.find(COLORS => COLORS[0] === color);
+    const trMultiplyer = TRANSMISSIONS.find(TRANSMISSIONS => TRANSMISSIONS[0] === transmission);
+    const distanceMultiplyer = DISTANCE.find(DISTANCE => DISTANCE[0] === distance);
+    let finalPrice = calcTotalPrice(modelWithPrice[1], yearMultiplyer[1], colorMultiplyer[1], trMultiplyer[1], distanceMultiplyer[1]);
     alert("Стоимость составит: " + finalPrice);
 }
 
@@ -87,6 +167,6 @@ function getModelsForBrand(brand) {
     return models;
 }
 
-function calcTotalPrice(modelPrice, yearMultiplier) {
-    return modelPrice * yearMultiplier;
+function calcTotalPrice(modelPrice, yearMultiplier, colorMultiplyer, trMultiplyer, distanceMultiplyer) {
+    return modelPrice * yearMultiplier * colorMultiplyer * trMultiplyer * distanceMultiplyer;
 }
