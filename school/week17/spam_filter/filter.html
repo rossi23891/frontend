@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>What's up?</h1>
+
+        <div id="cleanedAnswer" class="cleanedAnswer"></div>
+
+        <textarea name="userAnswer" id="userAnswer" cols="50" rows="5" class="feedback__input"
+            placeholder="Please enter your answer here"></textarea>
+        <p></p>
+        <button id="btn" class="btn" onclick="checkSpam()">Reply</button>
+    </div>
+
+    <script src="filter.js">
+    </script>
+</body>
+
+</html>
