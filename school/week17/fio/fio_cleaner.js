@@ -1,19 +1,29 @@
 function beautifyNames() {
-    let inputFirstName = document.getElementById(`first_name`).value;
-    let inputMiddleName = document.getElementById(`middle_name`).value;
-    let inputLastName = document.getElementById(`last_name`).value;
-    let cleanedName = cleanName(inputFirstName);
-    let cleanedMiddleName = cleanName(inputMiddleName);
-    let cleanedLastName = cleanName(inputLastName);
-    document.getElementById(`first_name`).value = cleanedName;
-    document.getElementById(`middle_name`).value = cleanedMiddleName;
-    document.getElementById(`last_name`).value = cleanedLastName;
-    alert("Привет " + cleanedName + " " + cleanedMiddleName + " " + cleanedLastName);
+    let namesInput = document.getElementById(`fio`).value.split(" ");
+    let names = [];
+    for (let i = 0; i < namesInput.length; i++) {
+        if (namesInput[i] != '') {
+            names.push(namesInput[i]);
+        }
+    }
+    if (names.length > 3) {
+        alert("Введено больше 3х слов");
+        return;
+    }
+    let inputFirstName = names[0];
+    let inputMiddleName = names[1]
+    let inputLastName = names[2];
+    names[0] = cleanName(inputFirstName);
+    names[1] = cleanName(inputMiddleName);
+    names[2] = cleanName(inputLastName);
+    let cleanedNames = names.join(" ");
+    document.getElementById(`fio`).value = cleanedNames;
+    alert("Привет " + cleanedNames);
 }
 
 function cleanName(name) {
-    let trimmedName = name.trim().toLowerCase();
-    return startFromUpperLetter(trimmedName);
+    let lower = name.toLowerCase();
+    return startFromUpperLetter(lower);
 }
 
 function startFromUpperLetter(str) {
