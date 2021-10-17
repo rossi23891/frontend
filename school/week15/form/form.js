@@ -1,25 +1,29 @@
 function checkInput() {
+    let errors = [];
     document.getElementById('error_text').innerHTML = "";
     if (isFirstNameEmpty()) {
-        document.getElementById('error_text').innerHTML += `Please, fill your first name<br>`;
+        errors.push(`Please, fill your first name`);
     }
     if (isLastNameEmpty()) {
-        document.getElementById('error_text').innerHTML += `Please, fill your last name<br>`;
+        errors.push(`Please, fill your last name`);
     }
     if (isUserNameEmpty()) {
-        document.getElementById('error_text').innerHTML += `Please, fill your user name<br>`;
+        errors.push(`Please, fill your user name`);
     }
     if (isEmailEmpty()) {
-        document.getElementById('error_text').innerHTML += `Please, fill your user e-mail<br>`;
+        errors.push(`Please, fill your user e-mail`);
     }
     if (isPasswordIncorrect()) {
-        document.getElementById('error_text').innerHTML += `Please, enter password minimum 8 characters long<br>`;
+        errors.push(`Please, enter password minimum 8 characters long`);
     }
     if (!isAgreementChecked()) {
-        document.getElementById('error_text').innerHTML += `Please agree with terms and conditions to proceed with the registration<br>`;
+        errors.push(`Please agree with terms and conditions to proceed with the registration`);
     }
-    if (document.getElementById('error_text').innerHTML == "") {
+    if (errors.length == 0) {
         alert("Welcome! you've succesfully registered to my website")
+    } else {
+        let errorDiv = document.querySelector('.error-message');
+        errorDiv.innerHTML = errors.join('. \n');
     }
 }
 
@@ -44,8 +48,8 @@ function isEmailEmpty() {
 }
 
 function isPasswordIncorrect() {
-    let input_password = document.getElementById("input_password");
-    return validatePasswordLength(input_password);
+    let input_password = document.getElementById("input_password").value;
+    return !validatePassword(input_password);
 }
 
 function isAgreementChecked() {
@@ -57,6 +61,6 @@ function validateIsEmpty(field) {
     return field.value == '';
 }
 
-function validatePasswordLength(password) {
-    return password.value.length < 8;
+function validatePassword(password) {
+    return /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$/.test(password);
 }
