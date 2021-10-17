@@ -1,0 +1,39 @@
+form {
+    font-size: 16pt;
+    /* Размер шрифта в пунктах */
+    font-weight: bold;
+
+}
+
+input {
+    background-color: lemonchiffon;
+    border-color: brown;
+    border-radius: 5pt;
+    height: 20pt;
+    width: 200pt;
+}
+
+textarea {
+    background-color: lemonchiffon;
+    border-color: brown;
+    border-radius: 5pt;
+}
+
+select {
+    background-color: lemonchiffon;
+    border-color: brown;
+    border-radius: 5pt;
+    height: 20pt;
+    width: 80pt;
+}
+
+h1 {
+    text-align: center;
+}
+
+body {
+    background-color: #be5010;
+    margin-top: 0px;
+    margin-left: 0px;
+    color: rgb(252, 244, 235);
+}
