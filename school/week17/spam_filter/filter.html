@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="filter.css">
     <title>Chat</title>
 </head>
 
@@ -12,12 +13,25 @@
     <div class="container">
         <h1>What's up?</h1>
 
+        <div id="user_pic">
+            <label for="user_pic_input">Choose photo: </label>
+            <input type="file" name="user_pic_input" id="user_pic_input" accept="image/*" />
+            <img src="" alt="user_photo" id="user_photo">
+            <div id="user_photo_final"></div>
+        </div>
+        <p></p>
+        <div id="user_data">
+            <label for="user_name">Enter your name (required):</label>
+            <input type="text" name="user_name" id="user_name" placeholder="Name" required />
+        </div>
+        <p></p>
+
         <div id="cleanedAnswer" class="cleanedAnswer"></div>
 
         <textarea name="userAnswer" id="userAnswer" cols="50" rows="5" class="feedback__input"
             placeholder="Please enter your answer here"></textarea>
         <p></p>
-        <button id="btn" class="btn" onclick="checkSpam()">Reply</button>
+        <button id="btn" class="btn" onclick="submitAnswer()">Reply</button>
     </div>
 
     <script src="filter.js">
