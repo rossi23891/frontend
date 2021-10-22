@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My to-do list</title>
+</head>
+
+<body>
+    <div class="notes">
+        <h1>My TODO list</h1>
+    </div>
+    <div>Actual notes:</div>
+    <ul></ul>
+    <div id="actual_notes"></div>
+    <button onclick="clearAll()"> Clear all from local storage</button>
+    <p></p>
+
+    <form>
+        <label for="note">Add new todo note:<br> </label>
+        <input type="text" id="note" placeholder="one more todo" required>
+    </form>
+    <p></p>
+    <button onclick="save()">Save in local storage</button>
+
+    <script src="todo.js"></script>
+</body>
+
+</html>
