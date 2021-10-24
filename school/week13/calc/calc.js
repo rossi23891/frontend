@@ -1,31 +1,33 @@
-function sum() {
-    let x = getX();
-    let y = getY();
-    alert(+x + +y);
-}
-
-function substract() {
-    alert(getX() - getY());
-}
-
-function multiply() {
-    alert(getX() * getY());
-}
-
-function divide() {
-    let x = getX();
-    let y = getY();
-    if (y == 0) {
-        alert("На ноль делить нельзя!");
-        return;
+class Calc {
+    static sum() {
+        let x = Calc.getX();
+        let y = Calc.getY();
+        alert(+x + +y);
     }
-    alert(x / y);
-}
 
-function getX() {
-    return prompt("Введите первое число: ");
-}
+    static substract() {
+        alert(Calc.getX() - Calc.getY());
+    }
 
-function getY() {
-    return prompt("Введите второе число: ");
+    static multiply() {
+        alert(Calc.getX() * Calc.getY());
+    }
+
+    static divide() {
+        let x = Calc.getX();
+        let y = Calc.getY();
+        if (y == 0) {
+            alert("На ноль делить нельзя!");
+            return;
+        }
+        alert(x / y);
+    }
+
+    static getX() {
+        return prompt("Введите первое число: ");
+    }
+
+    static getY() {
+        return prompt("Введите второе число: ");
+    }
 }
