@@ -34,35 +34,36 @@
         </div>
 
         <p>Порода питомца:
-            <select>
-                <option value="1">Персидская</option>
-                <option value="2">Британская</option>
-                <option value="3">Дворянская</option>
-                <option value="4">Другая</option>
+            <select id="breed1" class="breed1" name="brand1">
+                <option value="Персидская">Персидская</option>
+                <option value="Британская">Британская</option>
+                <option value="Дворянская">Дворянская</option>
+                <option value="Другая">Другая</option>
             </select>
             <label for="breed2">&nbsp;Если вы выбрали "Другая", укажите породу вашего питомца: </label>
-            <input type="text" id="breed2" />
+            <input type="text" class="breed2" />
         </p>
         <p> Чем питается ваш зверь: </p>
-        <input type="checkbox" name="feed" value="1" />
+        <input type="checkbox" name="feed" class="feed" value="сухой корм" />
         сухой корм<br />
-        <input type="checkbox" name="feed" value="2" />
+        <input type="checkbox" name="feed" class="feed" value="влажный корм" />
         влажный корм<br />
-        <input type="checkbox" name="feed" value="3" />
+        <input type="checkbox" name="feed" class="feed" value="размоченный корм" />
         размоченный корм<br />
 
         <p>Пол питомца:</p>
-        <p><input type="radio" name="sex" value="male" /> Самец</p>
-        <p><input type="radio" name="sex" value="female" /> Самка</p>
+        <p><input type="radio" name="sex" class="sex" value="male" /> Самец</p>
+        <p><input type="radio" name="sex" class="sex" value="female" /> Самка</p>
 
         <p>Комментарий владельца:</p>
-        <p><textarea name="comments" rows="5" cols="50"></textarea></p>
-        Фото вашего питомца: <input type="file" name="photo" />
+        <p><textarea name="comments" id="comment" rows="5" cols="50"></textarea></p>
+        Фото вашего питомца: <input type="file" class="photo" id="photo" />
 
-        <div><button type="submit">Submit</button></div>
+        <div><button type="submit" onclick="createCat()">Submit</button></div>
 
     </form>
 
+    <script src="cat.js"></script>
 </body>
 
 </html>
