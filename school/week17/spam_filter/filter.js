@@ -1,49 +1,23 @@
 let user_pic = document.getElementById('user_pic_input');
 let user_name = document.getElementById('user_name');
-user_name.addEventListener('change', changeHandler);
-user_pic.addEventListener('change', changePic);
 user_pic.addEventListener('change', setUserPic);
-
 
 document.addEventListener("DOMContentLoaded", function (event) {
     let data = JSON.parse(localStorage.getItem('data'));
-    if (data.user_pic != null) {
-        document.getElementById('user_pic_input').src = data.user_pic.src;
+    if (data != null) {
+        document.getElementById('user_photo').src = data.user_pic;
+        document.getElementById('user_name').value = data.user_name;
     }
 
-    if (data.user_name != null) {
-        document.getElementById('user_name').value = data.user_name.value;
+    let html = localStorage.getItem('html');
+    if (html != null) {
+        document.getElementById('cleanedAnswer').innerHTML = html;
     }
-})
-
-function changeHandler(e) {
-    let data = {
-        user_pic: null,
-        user_name: null
-    };
-    if (JSON.parse(localStorage.getItem('data')) != null) {
-        data = JSON.parse(localStorage.getItem('data'));
-    }
-    data.user_name = user_name.value;
-    localStorage.setItem('data', JSON.stringify(data));
-}
-
-function changePic(e) {
-    let data = {
-        user_pic: null,
-        user_name: null
-    };
-    if (JSON.parse(localStorage.getItem('data')) != null) {
-        data = JSON.parse(localStorage.getItem('data'));
-    }
-    data.user_pic = user_pic.src;
-    localStorage.setItem('data', JSON.stringify(data));
-}
+});
 
 function setUserPic(e) {
     document.getElementById('user_photo').src = window.URL.createObjectURL(this.files[0]);
 }
-
 
 function submitAnswer() {
     let inputString = document.getElementById(`userAnswer`).value;
@@ -55,22 +29,22 @@ function submitAnswer() {
         user_name: null
     };
     // index 0
-    data.user_pic = user_pic;
+    data.user_pic = user_pic.files[0].name;
     //index 1
-    data.user_name = user_name;
-    if (JSON.parse(localStorage.getItem('data')) == null) {
-        localStorage.setItem('data', JSON.stringify(data));
-    }
-    createMessage(user_pic, user_name, inputString);
+    data.user_name = user_name.value;
+    localStorage.setItem('data', JSON.stringify(data));
+    createMessage(data.user_pic, data.user_name, inputString);
 }
 
-function createMessage(author, pic, inputString) {
-    let userPart = author + " " + pic + ": ";
+function createMessage(pic, author, inputString) {
+    let userPart = author + '<img width="100" height="100" src="' + pic + '"> : ';
     document.getElementById(`cleanedAnswer`).innerHTML += userPart;
     document.getElementById(`cleanedAnswer`).innerHTML += clearSpam(inputString) + "<br/><br/>";
     document.getElementById(`userAnswer`).value = ``;
+
+    localStorage.setItem('html', document.getElementById('cleanedAnswer').innerHTML);
 }
 
 function clearSpam(inputString) {
-    return inputString.replace(/xxx/ig, `***`).replace(/viagra/ig, `***`);
+    return inputString.replace(/xxx|viagra/ig, `***`);
 }
