@@ -5,8 +5,7 @@ let heroesJson = `[{
     "activities": ["борец с преступностью", "филантроп", "миллиардер"],
     "friends": ["Робин", "Бэтгерл"],
     "powers": ["интеллект", "обширные познания", "знания боевых искусств", "ловкость"],
-    "picture": "assets/images/batman.jpg",
-    "personId": 1
+    "picture": "assets/images/batman.jpg"
 }, 
 {
     "name": "Супермен",
@@ -15,8 +14,7 @@ let heroesJson = `[{
     "activities": ["борец за справедливость"],
     "friends": ["собака Крипто"],
     "powers": ["непробиваемость", "полет", "самоисцеление", "суперзрение и суперслух"],
-    "picture": "assets/images/superman.jpg",
-    "personId": 2
+    "picture": "assets/images/superman.jpg"
 },
 {
     "name": "Тор",
@@ -25,8 +23,7 @@ let heroesJson = `[{
     "activities": ["борец за справедливость", "скандинавский бог"],
     "friends": ["Мстители"],
     "powers": ["все, что может бог, плюс молот Мьелнир"],
-    "picture": "assets/images/thor.jpg",
-    "personId": 6
+    "picture": "assets/images/thor.jpg"
 },
 {
     "name": "Чудо-женщина",
@@ -35,8 +32,7 @@ let heroesJson = `[{
     "activities": ["супергероиня", "секретарь-референт"],
     "friends": ["Бэтмен", "Супермен"],
     "powers": ["сверхчеловеческая сила и скорость", "полет", "выносливость"],
-    "picture": "assets/images/wonderwoman.jpg",
-    "personId": 11
+    "picture": "assets/images/wonderwoman.jpg"
 }, 
 {
     "name": "Капитан Америка",
@@ -45,21 +41,26 @@ let heroesJson = `[{
     "activities": ["супер-солдат"],
     "friends": ["Мстители"],
     "powers": ["бессмертие", "быстрая регенерация", "выносливость"],
-    "picture": "assets/images/capitainamerica.jpg",
-    "personId": 19
+    "picture": "assets/images/capitainamerica.jpg"
 }]`
+
+let ratings = [];
 
 document.addEventListener("DOMContentLoaded", (event) => {
     let heroes = JSON.parse(heroesJson);
     console.log(heroes);
-    // let savedRatings = getRatingsFromLocalStorage();
+
+    if (localStorage.getItem('ratings') != null) {
+        ratings = JSON.parse(localStorage.getItem('ratings'));
+    }
 
     let galleryContent = '';
-    for (let hero of heroes) {
+    for (let i = 0; i < heroes.length; i++) {
+        let hero = heroes[i];
         let activities = getActivities(hero);
         let friends = getFriends(hero);
         let powers = getPowers(hero);
-        // let rating = getRating(hero, savedRatings);
+
         galleryContent += `
         <div class="card my-3 col-6 offset-3">
             <img class="card-img-top" src=${hero.picture} alt="hero image"></img>
@@ -69,13 +70,32 @@ document.addEventListener("DOMContentLoaded", (event) => {
             ${activities}
             ${friends}
             ${powers}
-            <div id="rating">Ваш рейтинг для ${hero.name}: 0</div>
-            <div class="text-center">
-            <button type="button" class="btn btn-primary my-3">Пересчитать рейтинг для ${hero.name}</button>
-            </div>            
+            <div id="rating_data">
+            <label for="rating_data"> Ваш рейтинг для героя (от 1 до 10):</label>
+            <input type="number" class="rating" id="rating" min="1" max="10"/>
+            </div> 
+            <div id="errors"></div>          
             </div>`;
     }
+
     document.querySelector(".gallery").innerHTML = galleryContent;
+
+    let inputs = document.querySelectorAll('input');
+    console.log(inputs);
+    inputs.forEach((input, i) => {
+        let rating = ratings[i] == null ? '' : ratings[i];
+        input.value = rating;
+    });
+
+    inputs.forEach((input, i) => {
+
+        input.addEventListener('change', () => {
+            let newRating = +input.value;
+            ratings[i] = newRating;
+            console.log(newRating);
+            localStorage.setItem('ratings', JSON.stringify(ratings));
+        });
+    });
 });
 
 function getActivities(hero) {
@@ -110,55 +130,3 @@ function getPowers(hero) {
     let all = hero.powers.join(", ");
     return `<div>Суперсилы: ${all}</div>`;
 }
-
-// function getRating(hero, savedRatings) {
-//     if (savedRatings != undefined) {
-//         for (let i = 0; i < savedRatings.length; i++) {
-//             if (savedRatings[i].personId == hero.personId && savedRatings[i].rating != null) {
-//                 return savedRatings[i].rating;
-//             }
-//         }
-//     }
-//     return 0;
-// }
-
-// function getRatingsFromLocalStorage() {
-//     if (localStorage.getItem('ratedPersons')) {
-//         return JSON.parse(localStorage.getItem('ratedPersons'));
-//     }
-// }
-
-// function changeRate(hero) {
-//     let newRate = prompt("введите новый рейтинг от 1 до 10");
-//     validateRating(newRate);
-//     saveRate(hero, newRate);
-// }
-
-// function saveRate(hero, newRate) {
-//     let currentRatings = getRatingsFromLocalStorage();
-//     let found = false;
-//     for (let i = 0; i < currentRatings.length; i++) {
-//         if (currentRatings[i].personId == hero.personId) {
-//             currentRatings[i].rating = newRate;
-//             found = true;
-//         }
-
-//     }
-//     if (!found) {
-//         currentRatings.push(new RatedPerson(hero.personId, newRate));
-//     }
-//     localStorage.setItem('rate', JSON.stringify(currentRatings));
-// }
-
-// function validateRating(rating) {
-//     if (rating < 1 || rating > 10) {
-//         alert('Некорретный рейтинг - введите рейтинг от 1 до 10');
-//     }
-// }
-
-// class RatedPerson {
-//     constructor(personId, rating) {
-//         this.personId = personId;
-//         this.rating = rating;
-//     }
-// }
