@@ -20,7 +20,7 @@ function checkInput() {
         errors.push(`Please agree with terms and conditions to proceed with the registration`);
     }
     if (errors.length == 0) {
-        alert("Welcome! you've succesfully registered to my website")
+        register(e);
     } else {
         let errorDiv = document.querySelector('.error-message');
         errorDiv.innerHTML = errors.join('. \n');
@@ -63,4 +63,25 @@ function validateIsEmpty(field) {
 
 function validatePassword(password) {
     return /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$/.test(password);
+}
+
+function register(e) {
+    let user = {
+        firstName: document.getElementById("first_name").value,
+        lastName: document.getElementById("last_name").value,
+        userName: document.getElementById("user_name").value,
+        email: document.getElementById("input_email").value,
+        password: document.getElementById("input_password").value,
+        checked: document.getElementById("agreement").checked
+    }
+    console.log(user);
+
+    e.preventDefault();
+    let response = await fetch('localhost/test', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(user)
+    });
 }
