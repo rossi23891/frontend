@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="gif_search.css">
+    <title>Gif images</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="greeting col-9 text-center mb-3"> Interactive gif images - just enter what you'd like to find
+            </div>
+            <form class="col-6 ml-3 form">
+                <label class="mb-2" for="key-word">What would you like to find? <br>Enter the keyword</label>
+                <input class="mb-2" type="text" id="key-word" placeholder="Search...">
+                <p></p>
+                <button id="search" type="submit" class="button btn-success">Search</button>
+            </form>
+        </div>
+
+        <div class="row mt-4">
+            <div class="results col-12 text-center"></div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+    </script>
+    <script src="gif_search.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+.greeting {
+    font-size: 2em;
+    font-weight: bold;
+    color: rgb(182, 116, 127);
+}
+
+.form {
+    font-size: 1.5em;
+    font-weight: bolder;
+    color: rgb(99, 96, 96);
+}
+
+#key-word {
+    color: rgba(99, 96, 96, 0.6);
+}
