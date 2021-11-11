@@ -41,3 +41,16 @@ function getFeed() {
     }
     return feed;
 }
+
+function register(e) {
+    e.preventDefault();
+    fetch('localhost/test/post/cat', {
+        method: 'POST',
+        body: new FormData(ownerForm)
+    })
+        .then(response => response.json())
+        .then(info => {
+            console.log(info);
+        })
+        .catch(error => console.log(error));
+}
