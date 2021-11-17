@@ -51,7 +51,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
     console.log(heroes);
 
     if (localStorage.getItem('ratings') != null) {
-        ratings = JSON.parse(localStorage.getItem('ratings'));
+        try {
+            ratings = JSON.parse(localStorage.getItem('ratings'));
+        } catch (err) {
+            console.log(error);
+        }
     }
 
     let galleryContent = '';
