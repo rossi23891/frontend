@@ -1,4 +1,4 @@
-function CardTrackingLine(props) {
+function CardTableLine(props) {
     return (
         <div className="line">
             <div className="card-decription">{props.description}</div>
@@ -7,4 +7,4 @@ function CardTrackingLine(props) {
         </div>
     );
 }
-export default CardTrackingLine;
+export default CardTableLine;
