@@ -1,11 +1,15 @@
 import { Card, Col } from 'antd';
 import 'antd/dist/antd.css';
+import { useState } from 'react';
 
 function TariffCard(props) {
-    let isSelected = props.isSelected;
+    const [selected, setSelected] = useState(props.isSelected || false);
+    const handleChange = () => {
+        setSelected(!selected);
+    };
     return (
         <Col>
-            <Card style={{ border: isSelected && "3px solid rgb(212, 212, 212)" }}>
+            <Card style={{ border: selected && "3px solid rgb(212, 212, 212)" }} onClick={handleChange}>
                 <div className={props.color}>
                     {/* передаем сюда цену тоже, чтоб не разъехалось */}
                     <div className="cardTitle">{props.title} {props.price}</div>
