@@ -1,4 +1,5 @@
 import { Table, Space } from 'antd';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 
 const columns = [
@@ -60,10 +61,34 @@ const data = [
 ];
 
 function CardsTable(props) {
+    const [selectedRow, setSelectedRow] = useState(undefined);
+
+    const handleRowSelect = (record) => {
+        if (selectedRow === undefined) {
+            setSelectedRow(record);
+        } else if (selectedRow.Name === record.Name) {
+            setSelectedRow(undefined);
+        } else {
+            setSelectedRow(record);
+        }
+    };
     return (
-        <div className='cardsTable'>
-            <Table columns={columns} dataSource={data} bordered />
-        </div>
+        <>
+            <Table columns={columns} dataSource={data} bordered
+                onRow={(record) => {
+                    return {
+                        onClick: (event) => handleRowSelect(record)
+                    };
+                }}
+                rowClassName={(record) => {
+                    console.log({ record, selectedRow });
+                    if (selectedRow) {
+                        return record.Name === selectedRow.Name ? "selected-row" : "";
+                    } else {
+                        return "";
+                    }
+                }} />
+        </>
     );
 }
 export default CardsTable;

@@ -1,13 +1,29 @@
 .header {
-    height: 7vh;
+    height: 5.4vh;
+    background-color: rgb(8, 110, 114);
 }
 
+.col {
+    width: 40%;
+}
 
 .menu {
-    background-color: rgba(8, 110, 114, 0.8);
+    background-color: rgb(8, 110, 114);
     color: rgb(244, 244, 256);
     font-size: 1.2em;
     font-weight: 600;
     width: 100%;
-    display: flex;
+}
+
+.menuItem {
+    width: 33%;
+    color: rgb(255, 254, 254)
+}
+
+a.link:hover {
+    color: rgb(247, 208, 136);
+}
+
+.activeLink {
+    color: rgb(247, 208, 136);
 }
