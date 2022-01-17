@@ -1,0 +1,10 @@
+.App {
+  text-align: start;
+  margin-left: 5px;
+}
+
+.Header {
+  font-size: 4vh;
+  font-weight: bold;
+  color: rgb(0, 81, 255);
+}
