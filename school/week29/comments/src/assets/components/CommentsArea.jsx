@@ -3,8 +3,8 @@ import "../styles/buttons.css"
 import Comment from "./Comment";
 
 function CommentsArea() {
-    const { comments, setComments } = useState([]);
-    const { message, setMessage } = useState('');
+    const [comments, setComments] = useState([]);
+    const [message, setMessage] = useState('');
 
     let addComment = () => {
         let newComment = message;
@@ -29,7 +29,7 @@ function CommentsArea() {
         <div className="CommentsArea">
             <div>
                 {comments.map((text, index) => (
-                    <Comment key={index} text={text} highlighted={index === 0} />
+                    <Comment key={index} text={text} highlighted={index == 0} />
                 )
                 )}
             </div>
@@ -39,7 +39,7 @@ function CommentsArea() {
                 value={message}
                 rows={5}
                 cols={50}
-                onKeyDown={handleAreaChange}
+                onChange={handleAreaChange}
             />
             <p></p>
 

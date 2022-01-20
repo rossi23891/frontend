@@ -1,10 +1,8 @@
 function Comment(props) {
     const { text, highlighted } = props;
 
-    let highlightedClass = ("highlighted");
-
     return (
-        <div className={`Comment ${highlighted && highlightedClass}`}>
+        <div className="Comment" style={{ color: highlighted && "rgb(0, 81, 255)" }}>
             {text}
         </div>
     );
