@@ -1,9 +1,9 @@
 function CardTableLine(props) {
     return (
         <div className="line">
-            <div className="card-decription">{props.description}</div>
-            <div className="card-date">{props.date}</div>
-            <div className="card-stars">{props.stars}</div>
+            <div className="CardDecription">{props.description}</div>
+            <div className="CardDate">{props.date}</div>
+            <div className="CardStars">{props.stars}</div>
         </div>
     );
 }

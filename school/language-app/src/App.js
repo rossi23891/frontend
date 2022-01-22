@@ -2,9 +2,9 @@ import './App.css';
 import React from 'react';
 // import { BrowserRouter as Router, Route, Routes, NavLink, Redirect, Switch } from 'react-router-dom';
 import Header from './assets/components/Header';
-import CardsTable from './assets/components/CardsTable';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
+import EditableTable from './assets/components/EditableTable';
 
 const { Content } = Layout;
 
@@ -13,9 +13,9 @@ function App() {
     <div className="App">
       {/* <Router> */}
       <Layout>
-        <Header></Header>
+        <Header />
         <Content>
-          <CardsTable></CardsTable>
+          <EditableTable />
         </Content>
         {/* <Routes>
             <Route exact path="/" component={Content} />
