@@ -5,6 +5,7 @@ import Header from './assets/components/Header';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
 import EditableTable from './assets/components/EditableTable';
+import CardsCaroussel from './assets/components/CardsCaroussel';
 
 const { Content } = Layout;
 
@@ -16,6 +17,7 @@ function App() {
         <Header />
         <Content>
           <EditableTable />
+          <CardsCaroussel />
         </Content>
         {/* <Routes>
             <Route exact path="/" component={Content} />

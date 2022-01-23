@@ -1,0 +1,25 @@
+.ant-carousel .slick-prev,
+.ant-carousel .slick-next,
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-next:hover {
+    font-size: 2em;
+    color: currentColor;
+}
+
+.ant-carousel .slick-prev,
+.ant-carousel .slick-prev:hover {
+    left: 15px;
+    z-index: 2;
+    color: rgb(8, 110, 114);
+}
+
+.ant-carousel .slick-next,
+.ant-carousel .slick-next:hover {
+    right: 15px;
+    z-index: 2;
+    color: rgb(8, 110, 114);
+}
+
+.CustomDots {
+    color: rgb(8, 110, 114);
+}

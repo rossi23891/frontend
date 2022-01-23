@@ -10,7 +10,7 @@ function Header() {
         <div className="header">
             <Router>
                 <Row justify="end">
-                    <Col className='col'>
+                    <Col className='col-5'>
                         <Menu className="menu" mode="horizontal" defaultSelectedKeys={['1']}>
                             <Menu.Item className="menuItem" key="1" icon={<HomeOutlined />} >
                                 <span>Home</span>
