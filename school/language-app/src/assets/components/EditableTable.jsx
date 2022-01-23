@@ -109,6 +109,7 @@ function EditableTable() {
             dataIndex: 'english',
             width: '20%',
             editable: true,
+            render: text => <a>{text}</a>,
         },
         {
             title: 'russian',
