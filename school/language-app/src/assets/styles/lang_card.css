@@ -1,0 +1,9 @@
+.LangCard {
+    border: 2px solid rgb(8, 110, 114);
+    width: 20%;
+    margin-top: 8%;
+    margin-left: 38%;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgb(227, 229, 230);
+}

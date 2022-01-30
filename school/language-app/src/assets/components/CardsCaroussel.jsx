@@ -1,8 +1,10 @@
-import { Carousel } from 'antd';
 import LangCard from './LangCard';
-import { useState } from 'react';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import '../styles/caroussel.css'
+import Slider from 'react-slick';
+
 const originData = [
     {
         key: '1',
@@ -27,28 +29,29 @@ const originData = [
     },
 ];
 
-function CardsCaroussel(props) {
-    const [index, setIndex] = useState(0);
+export default function CardsCaroussel() {
 
-    const handleSelect = (selectedIndex, e) => {
-        setIndex(selectedIndex);
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        prevArrow: <LeftOutlined />,
+        nextArrow: <RightOutlined />
     };
     return (
-        <div className="CardsCaroussel">
-
-            <Carousel style={{ height: '40vh' }}
-                arrows={true} prevArrow={<LeftOutlined />} nextArrow={<RightOutlined />}>
+        <div className='caroussel'>
+            <h2 style={{ marginTop: '6vh', color: 'rgb(8, 110, 114)', fontWeight: 'bold', fontSize: '3em' }}> Guess the word</h2>
+            <Slider {...settings} style={{ height: '60vh', border: '1px solid rgb(8, 110, 114)', marginTop: '9vh', width: '94vw', marginLeft: '2vw' }}>
                 {originData.map((word, i) => (
-                    <LangCard>
-                        key={word.key},
-                        english = {word.english},
-                        russian = {word.russian},
-                        transcription ={word.transcription},
-                        category = {word.category}
-                    </LangCard>
+                    <LangCard
+                        key={i}
+                        {...word}
+                    />
                 ))}
-            </Carousel>
+            </Slider>
         </div>
     );
 }
-export default CardsCaroussel;
