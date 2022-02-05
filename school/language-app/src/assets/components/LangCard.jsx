@@ -13,15 +13,11 @@ function LangCard(props) {
     return (
         <div className="LangCard">
             <Card>
-                <div className="EnglishText" style={{ color: 'rgb(8, 110, 114)', fontWeight: 'bold' }}>{english}</div>
+                <div className="EnglishText">{english}</div>
                 <div className="Transription">{transcription}</div>
                 <p></p>
-                {transcriptionVisible ? <div className="RussianText" style={{ fontWeight: 'bold' }}>{russian}</div>
-                    : <button className="CardButton" style={{
-                        backgroundColor: 'rgb(227, 229, 230)',
-                        color: 'rgb(8, 110, 114)', fontWeight: 'bold', borderRadius: '5px', border: '2px solid rgb(8, 110, 114)'
-                    }}
-                        onClick={handleChange}>Check</button>}
+                {transcriptionVisible ? <div className="RussianText">{russian}</div>
+                    : <button className="CardButton" onClick={handleChange}>Check</button>}
             </Card>
         </div>
     );

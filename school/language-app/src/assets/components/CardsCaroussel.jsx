@@ -1,5 +1,4 @@
 import LangCard from './LangCard';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../styles/caroussel.css'
@@ -29,6 +28,28 @@ const originData = [
     },
 ];
 
+function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block", background: 'rgb(8, 110, 114)' }}
+            onClick={onClick}
+        />
+    );
+}
+
+function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className={className}
+            style={{ ...style, display: "block", background: 'rgb(8, 110, 114)' }}
+            onClick={onClick}
+        />
+    );
+}
+
 export default function CardsCaroussel() {
 
     const settings = {
@@ -38,13 +59,14 @@ export default function CardsCaroussel() {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: true,
-        prevArrow: <LeftOutlined />,
-        nextArrow: <RightOutlined />
+        centerMode: true,
+        prevArrow: <SamplePrevArrow />,
+        nextArrow: <SampleNextArrow />
     };
     return (
         <div className='caroussel'>
-            <h2 style={{ marginTop: '6vh', color: 'rgb(8, 110, 114)', fontWeight: 'bold', fontSize: '3em' }}> Guess the word</h2>
-            <Slider {...settings} style={{ height: '60vh', border: '1px solid rgb(8, 110, 114)', marginTop: '9vh', width: '94vw', marginLeft: '2vw' }}>
+            <h2 className='title'> Guess the word</h2>
+            <Slider {...settings} className='customSlider'>
                 {originData.map((word, i) => (
                     <LangCard
                         key={i}

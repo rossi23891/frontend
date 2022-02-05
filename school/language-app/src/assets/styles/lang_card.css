@@ -1,9 +1,25 @@
 .LangCard {
     border: 2px solid rgb(8, 110, 114);
     width: 20%;
-    margin-top: 8%;
-    margin-left: 38%;
+    margin-left: 40%;
     border-radius: 10px;
     text-align: center;
     background-color: rgb(227, 229, 230);
+}
+
+.EnglishText {
+    color: rgb(8, 110, 114);
+    font-weight: bold;
+}
+
+.RussianText {
+    font-weight: bold;
+}
+
+.CardButton {
+    background-color: rgb(227, 229, 230);
+    color: rgb(8, 110, 114);
+    font-weight: bold;
+    border-radius: 5px;
+    border: 2px solid rgb(8, 110, 114);
 }
