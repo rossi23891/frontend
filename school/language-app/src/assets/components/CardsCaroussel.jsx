@@ -3,6 +3,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../styles/caroussel.css'
 import Slider from 'react-slick';
+import { useState } from 'react';
 
 const originData = [
     {
@@ -53,27 +54,38 @@ function SamplePrevArrow(props) {
 export default function CardsCaroussel() {
 
     const settings = {
-        dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: true,
-        centerMode: true,
         prevArrow: <SamplePrevArrow />,
         nextArrow: <SampleNextArrow />
     };
+
+    const [selected, setSelected] = useState([]);
+    const [counter, setCounter] = useState(0);
+
+    const countItem = (item) => {
+        setCounter(counter + 1);
+
+        const newArr = new Set(selected);
+        console.log(item);
+        newArr.add(item);
+        setSelected(Array.from(newArr));
+    }
+
     return (
         <div className='caroussel'>
             <h2 className='title'> Guess the word</h2>
             <Slider {...settings} className='customSlider'>
-                {originData.map((word, i) => (
-                    <LangCard
-                        key={i}
-                        {...word}
-                    />
-                ))}
+                {originData.map((word, i) => {
+                    return <LangCard key={i} id={i} {...word} count={countItem} />
+                }
+                )}
             </Slider>
+            <h2>{`Всего кликов: ${counter}`}</h2>
+            <h2>{`Выбранных карточек: ${selected.length} / ${originData.length}`}</h2>
         </div>
     );
 }

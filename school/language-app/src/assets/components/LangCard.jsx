@@ -1,13 +1,17 @@
 import { Card } from 'antd';
 import 'antd/dist/antd.css';
 import '../styles/lang_card.css'
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 function LangCard(props) {
     const { english, transcription, russian } = props;
     const [transcriptionVisible, setTranscriptionVisible] = useState(false);
 
-    const handleChange = () => {
+    const ref = useRef();
+    useEffect(() => ref.current.focus(), []);
+
+    const handleChange = (event) => {
         setTranscriptionVisible(!transcriptionVisible);
+        props.count(props.id);
     };
 
     return (
@@ -17,7 +21,7 @@ function LangCard(props) {
                 <div className="Transription">{transcription}</div>
                 <p></p>
                 {transcriptionVisible ? <div className="RussianText">{russian}</div>
-                    : <button className="CardButton" onClick={handleChange}>Check</button>}
+                    : <button className="CardButton" onClick={handleChange} ref={ref}>Check</button>}
             </Card>
         </div>
     );
