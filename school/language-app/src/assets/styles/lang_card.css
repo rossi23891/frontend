@@ -1,14 +1,18 @@
+:root {
+    --custom-color: rgb(8, 110, 114);
+}
+
 .LangCard {
-    border: 2px solid rgb(8, 110, 114);
+    border: 2px solid var(--custom-color);
     width: 20%;
-    margin-left: auto;
+    margin-left: 55%;
     border-radius: 10px;
     text-align: center;
     background-color: rgb(227, 229, 230);
 }
 
 .EnglishText {
-    color: rgb(8, 110, 114);
+    color: var(--custom-color);
     font-weight: bold;
 }
 
@@ -18,8 +22,8 @@
 
 .CardButton {
     background-color: rgb(227, 229, 230);
-    color: rgb(8, 110, 114);
+    color: var(--custom-color);
     font-weight: bold;
     border-radius: 5px;
-    border: 2px solid rgb(8, 110, 114);
+    border: 2px solid var(--custom-color);
 }
