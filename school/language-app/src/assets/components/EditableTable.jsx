@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Table, Input, InputNumber, Popconfirm, Form, Typography } from 'antd';
+import 'antd/dist/antd.css';
+import '../../App.css'
 const originData = [
     {
         key: '1',
@@ -64,6 +66,7 @@ function EditableTable() {
     const [form] = Form.useForm();
     const [data, setData] = useState(originData);
     const [editingKey, setEditingKey] = useState('');
+    const [deletingKey, setDeletingKey] = useState('');
 
     const isEditing = (record) => record.key === editingKey;
 
@@ -103,6 +106,27 @@ function EditableTable() {
         }
     };
 
+    const handleDelete = (key) => {
+        setDeletingKey(key);
+        const newData = [...data].filter((item) => item.key !== key);
+        setData(newData);
+        setDeletingKey('');
+    };
+
+    // handleAdd = () => {
+    //     const { count, dataSource } = this.state;
+    //     const newData = {
+    //         key: count,
+    //         name: `Edward King ${count}`,
+    //         age: '32',
+    //         address: `London, Park Lane no. ${count}`,
+    //     };
+    //     this.setState({
+    //         dataSource: [...dataSource, newData],
+    //         count: count + 1,
+    //     });
+    // };
+
     const columns = [
         {
             title: 'english',
@@ -134,6 +158,7 @@ function EditableTable() {
             dataIndex: 'actions',
             render: (_, record) => {
                 const editable = isEditing(record);
+                const deleteShowDisabled = (editingKey !== '');
                 return editable ? (
                     <span>
                         <Typography.Link
@@ -144,14 +169,24 @@ function EditableTable() {
                         >
                             Save
                         </Typography.Link>
-                        <Popconfirm title="Sure to delete?" onConfirm={cancel}>
-                            <a>Delete</a>
+                        <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+                            <a>Cancel</a>
                         </Popconfirm>
                     </span>
                 ) : (
-                    <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-                        Edit
-                    </Typography.Link>
+                    <span>
+                        <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}
+                            style={{
+                                marginRight: 8,
+                            }}>
+                            Edit
+                        </Typography.Link>
+                        <Popconfirm title="Sure to delete?" disabled={deleteShowDisabled}
+                            onConfirm={() => handleDelete(record.key)}>
+                            <a style={{ color: deleteShowDisabled && 'rgba(0, 0, 0, 0.25)', cursor: 'not-allowed' }}>
+                                Delete</a>
+                        </Popconfirm>
+                    </span>
                 );
             },
         },
