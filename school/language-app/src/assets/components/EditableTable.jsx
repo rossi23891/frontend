@@ -183,7 +183,7 @@ function EditableTable() {
                         </Typography.Link>
                         <Popconfirm title="Sure to delete?" disabled={deleteShowDisabled}
                             onConfirm={() => handleDelete(record.key)}>
-                            <a style={{ color: deleteShowDisabled && 'rgba(0, 0, 0, 0.25)', cursor: 'not-allowed' }}>
+                            <a style={{ color: deleteShowDisabled && 'rgba(0, 0, 0, 0.25)' }}>
                                 Delete</a>
                         </Popconfirm>
                     </span>
