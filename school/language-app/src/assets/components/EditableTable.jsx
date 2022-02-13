@@ -1,30 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Table, Input, InputNumber, Popconfirm, Form, Typography } from 'antd';
 import 'antd/dist/antd.css';
 import '../../App.css'
-const originData = [
-    {
-        key: '1',
-        english: 'cat',
-        russian: 'кошка',
-        transcription: '[cat]',
-        category: 'животные',
-    },
-    {
-        key: '2',
-        english: 'dog',
-        russian: 'собака',
-        transcription: '[dog]',
-        category: 'животные',
-    },
-    {
-        key: '3',
-        english: 'mouse',
-        russian: 'мышь',
-        transcription: '[mouse]',
-        category: 'животные',
-    },
-];
+import { WordsContext } from './WordsContext';
+import { useEffect } from 'react';
 
 const EditableCell = ({
     editing,
@@ -63,12 +42,16 @@ const EditableCell = ({
 };
 
 function EditableTable() {
+    const { words, fillWords } = useContext(WordsContext);
+
     const [form] = Form.useForm();
-    const [data, setData] = useState(originData);
+    const [data, setData] = useState(words);
     const [editingKey, setEditingKey] = useState('');
     const [deletingKey, setDeletingKey] = useState('');
 
     const isEditing = (record) => record.key === editingKey;
+
+    useEffect(() => fillWords(), []);
 
     const edit = (record) => {
         form.setFieldsValue({
