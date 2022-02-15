@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Input, InputNumber, Popconfirm, Form, Typography } from 'antd';
+import { Table, Input, InputNumber, Popconfirm, Form, Typography, Button } from 'antd';
 import 'antd/dist/antd.css';
 import '../../App.css'
 const originData = [
@@ -113,19 +113,21 @@ function EditableTable() {
         setDeletingKey('');
     };
 
-    // handleAdd = () => {
-    //     const { count, dataSource } = this.state;
-    //     const newData = {
-    //         key: count,
-    //         name: `Edward King ${count}`,
-    //         age: '32',
-    //         address: `London, Park Lane no. ${count}`,
-    //     };
-    //     this.setState({
-    //         dataSource: [...dataSource, newData],
-    //         count: count + 1,
-    //     });
-    // };
+    const handleAdd = async () => {
+        form.setFieldsValue({
+            english: '',
+            russian: '',
+            transcription: '',
+            category: '',
+        });
+
+        const row = await form.validateFields();
+        row.key = data.length + 1;
+
+        const newData = [...data];
+        newData.push(row);
+        setData(newData);
+    };
 
     const columns = [
         {
@@ -223,6 +225,8 @@ function EditableTable() {
                     onChange: cancel,
                 }}
             />
+
+            <Button type='dashed' onClick={handleAdd}>Add word</Button>
         </Form>
     );
 };
