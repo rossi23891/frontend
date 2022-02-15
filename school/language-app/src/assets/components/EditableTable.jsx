@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Table, Input, InputNumber, Popconfirm, Form, Typography } from 'antd';
+import { Table, Input, InputNumber, Popconfirm, Form, Typography, Button } from 'antd';
 import 'antd/dist/antd.css';
 import '../../App.css'
 import { WordsContext } from './WordsContext';
@@ -42,7 +42,7 @@ const EditableCell = ({
 };
 
 function EditableTable() {
-    const { words, fillWords } = useContext(WordsContext);
+    const { words, fillWords, deleteWord, addWord, editWord } = useContext(WordsContext);
 
     const [form] = Form.useForm();
     const [data, setData] = useState(words);
@@ -58,7 +58,7 @@ function EditableTable() {
             english: '',
             russian: '',
             transcription: '',
-            category: '',
+            tags: '',
             ...record,
         });
         setEditingKey(record.key);
@@ -71,19 +71,8 @@ function EditableTable() {
     const save = async (key) => {
         try {
             const row = await form.validateFields();
-            const newData = [...data];
-            const index = newData.findIndex((item) => key === item.key);
-
-            if (index > -1) {
-                const item = newData[index];
-                newData.splice(index, 1, { ...item, ...row });
-                setData(newData);
-                setEditingKey('');
-            } else {
-                newData.push(row);
-                setData(newData);
-                setEditingKey('');
-            }
+            editWord(row);
+            setEditingKey('');
         } catch (errInfo) {
             console.log('Validate Failed:', errInfo);
         }
@@ -91,24 +80,22 @@ function EditableTable() {
 
     const handleDelete = (key) => {
         setDeletingKey(key);
-        const newData = [...data].filter((item) => item.key !== key);
-        setData(newData);
+        deleteWord(key);
         setDeletingKey('');
     };
 
-    // handleAdd = () => {
-    //     const { count, dataSource } = this.state;
-    //     const newData = {
-    //         key: count,
-    //         name: `Edward King ${count}`,
-    //         age: '32',
-    //         address: `London, Park Lane no. ${count}`,
-    //     };
-    //     this.setState({
-    //         dataSource: [...dataSource, newData],
-    //         count: count + 1,
-    //     });
-    // };
+    const handleAdd = async () => {
+        const newKey = data.length + 1;
+        form.setFieldsValue({
+            english: '',
+            russian: '',
+            transcription: '',
+            tags: '',
+        });
+        const row = await form.validateFields();
+        row.key = newKey;
+        addWord(row);
+    };
 
     const columns = [
         {
@@ -131,8 +118,8 @@ function EditableTable() {
             editable: true,
         },
         {
-            title: 'category',
-            dataIndex: 'category',
+            title: 'tags',
+            dataIndex: 'tags',
             width: '20%',
             editable: true,
         },
@@ -206,6 +193,7 @@ function EditableTable() {
                     onChange: cancel,
                 }}
             />
+            <Button type='dashed' onClick={handleAdd}>Add new word</Button>
         </Form>
     );
 };
