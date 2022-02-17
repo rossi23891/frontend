@@ -21,13 +21,13 @@
     height: 60vh;
     border: 1px solid rgb(8, 110, 114);
     margin-top: 9vh;
-    max-width: 1021px;
-    margin: 0 auto;
+    width: 1021px;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .slick-track {
-    min-width: 1021px;
+    width: 1021px;
 }
