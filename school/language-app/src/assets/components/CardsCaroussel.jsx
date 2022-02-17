@@ -21,6 +21,20 @@ const originData = [
         category: 'животные',
     },
     {
+        key: '4',
+        english: 'house',
+        russian: 'дом',
+        transcription: '[house]',
+        category: 'быт',
+    },
+    {
+        key: '5',
+        english: 'snow',
+        russian: 'снег',
+        transcription: '[snow]',
+        category: 'погода',
+    },
+    {
         key: '3',
         english: 'mouse',
         russian: 'мышь',
@@ -55,7 +69,7 @@ export default function CardsCaroussel() {
 
     const settings = {
         infinite: true,
-        speed: 500,
+        speed: 600,
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: true,
