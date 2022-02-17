@@ -44,7 +44,7 @@ export default function CardsCaroussel() {
     const [counter, setCounter] = useState(0);
     const { words, fillWords } = useContext(WordsContext);
 
-    useEffect(() => fillWords(), [words]);
+    // useEffect(() => fillWords(), [words]);
 
     const countItem = (item) => {
         setCounter(counter + 1);
