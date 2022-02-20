@@ -1,30 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { observer, inject } from "mobx-react";
 import { Table, Input, InputNumber, Popconfirm, Form, Typography, Button } from 'antd';
 import 'antd/dist/antd.css';
 import '../../App.css'
-const originData = [
-    {
-        key: '1',
-        english: 'cat',
-        russian: 'кошка',
-        transcription: '[cat]',
-        category: 'животные',
-    },
-    {
-        key: '2',
-        english: 'dog',
-        russian: 'собака',
-        transcription: '[dog]',
-        category: 'животные',
-    },
-    {
-        key: '3',
-        english: 'mouse',
-        russian: 'мышь',
-        transcription: '[mouse]',
-        category: 'животные',
-    },
-];
 
 const EditableCell = ({
     editing,
@@ -62,13 +40,17 @@ const EditableCell = ({
     );
 };
 
-function EditableTable() {
+function EditableTable({ wordsStore }) {
     const [form] = Form.useForm();
-    const [data, setData] = useState(originData);
+    const [data, setData] = useState(wordsStore.words);
     const [editingKey, setEditingKey] = useState('');
     const [deletingKey, setDeletingKey] = useState('');
 
     const isEditing = (record) => record.key === editingKey;
+
+    useEffect(() => {
+        wordsStore.loadData();
+    }, []);
 
     const edit = (record) => {
         form.setFieldsValue({
@@ -87,46 +69,40 @@ function EditableTable() {
 
     const save = async (key) => {
         try {
-            const row = await form.validateFields();
-            const newData = [...data];
-            const index = newData.findIndex((item) => key === item.key);
+            const row = form.validateFields();
+            const index = wordsStore.words.findIndex((item) => key === item.key);
 
-            if (index > -1) {
-                const item = newData[index];
-                newData.splice(index, 1, { ...item, ...row });
-                setData(newData);
-                setEditingKey('');
-            } else {
-                newData.push(row);
-                setData(newData);
-                setEditingKey('');
-            }
+            const item = wordsStore.words[index];
+            wordsStore.words.splice(index, 1, { ...item, ...row });
+            wordsStore.loadData();
+            setEditingKey('');
         } catch (errInfo) {
             console.log('Validate Failed:', errInfo);
         }
     };
 
+    if (!wordsStore.isLoaded) {
+        return "...";
+    }
+
     const handleDelete = (key) => {
         setDeletingKey(key);
-        const newData = [...data].filter((item) => item.key !== key);
-        setData(newData);
+        wordsStore.remove(key);
         setDeletingKey('');
     };
 
-    const handleAdd = async () => {
+    const handleAdd = () => {
         form.setFieldsValue({
             english: '',
             russian: '',
             transcription: '',
-            category: '',
+            tags: '',
         });
 
-        const row = await form.validateFields();
+        const row = form.validateFields();
         row.key = data.length + 1;
 
-        const newData = [...data];
-        newData.push(row);
-        setData(newData);
+        wordsStore.add(row);
     };
 
     const columns = [
@@ -231,4 +207,4 @@ function EditableTable() {
     );
 };
 
-export default EditableTable;
+export default inject(["wordsStore"])(observer(EditableTable));
