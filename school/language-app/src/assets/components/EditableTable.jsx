@@ -76,9 +76,10 @@ function EditableTable() {
         }
     };
 
-    const handleDelete = (key) => {
-        setDeletingKey(key);
-        deleteWord(key);
+    const handleDelete = (record) => {
+        console.log(80, record);
+        setDeletingKey(record.id);
+        deleteWord(record.id);
         setDeletingKey('');
     };
 
@@ -90,8 +91,13 @@ function EditableTable() {
             transcription: '',
             tags: '',
         });
-        const row = await form.validateFields();
-        row.key = newKey;
+        const row = {
+            english: 'bird',
+            id: { newKey },
+            russian: 'птица',
+            transcription: '[be:d]',
+            tags: 'птицы',
+        };
         addWord(row);
     };
 
@@ -150,7 +156,7 @@ function EditableTable() {
                             Edit
                         </Typography.Link>
                         <Popconfirm title="Sure to delete?" disabled={deleteShowDisabled}
-                            onConfirm={() => handleDelete(record.key)}>
+                            onConfirm={() => handleDelete(record)}>
                             <a style={{ color: deleteShowDisabled && 'rgba(0, 0, 0, 0.25)' }}>
                                 Delete</a>
                         </Popconfirm>

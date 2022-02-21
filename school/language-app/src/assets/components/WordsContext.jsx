@@ -93,7 +93,14 @@ function WordsContextProvider(props) {
                     throw new Error('Oops - api error while deleting data ...');
                 }
             })
-            .then(() => fillWords())
+            .then(response => {
+                if (response?.errors?.length) {
+                    throw new Error('Oops - api error while deleting data...');
+                }
+                else {
+                    fillWords();
+                }
+            })
             .catch((error) => {
                 setError(error);
             });
