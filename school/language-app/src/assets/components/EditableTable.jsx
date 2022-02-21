@@ -51,8 +51,6 @@ function EditableTable() {
 
     const isEditing = (record) => record.key === editingKey;
 
-    // useEffect(() => fillWords(), [words]);
-
     const edit = (record) => {
         form.setFieldsValue({
             english: '',

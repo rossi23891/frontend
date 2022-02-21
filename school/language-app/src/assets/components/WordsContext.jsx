@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 const WordsContext = React.createContext();
 
 function WordsContextProvider(props) {
@@ -7,10 +7,12 @@ function WordsContextProvider(props) {
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    useEffect(() => fillWords(), []);
+
     function fillWords() {
         setLoading(true);
 
-        fetch('http://itgirlschool.justmakeit.ru/api/words')
+        fetch('/api/words')
             .then(response => {
                 if (response.ok) { //Проверяем что код ответа 200
                     return response.json();
@@ -29,7 +31,7 @@ function WordsContextProvider(props) {
     }
 
     const addWord = (record) => {
-        fetch('http://itgirlschool.justmakeit.ru/api/words/add', {
+        fetch('/api/words/add', {
             method: "POST",
             body: JSON.stringify(record),
             headers: {
@@ -43,14 +45,21 @@ function WordsContextProvider(props) {
                     throw new Error('Oops - api error while adding data...');
                 }
             })
-            .then(() => fillWords())
+            .then(response => {
+                if (response?.errors?.length) {
+                    throw new Error('Oops - api error while adding data...');
+                }
+                else {
+                    fillWords();
+                }
+            })
             .catch((error) => {
                 setError(error);
             });
     }
 
     const editWord = (record) => {
-        fetch(`http://itgirlschool.justmakeit.ru/api/words/${record.key}/update`, {
+        fetch(`/api/words/${record.key}/update`, {
             method: "POST",
             body: JSON.stringify(record),
             headers: {
@@ -71,7 +80,7 @@ function WordsContextProvider(props) {
     };
 
     const deleteWord = (key) => {
-        fetch(`http://itgirlschool.justmakeit.ru/api/words/${key}/delete`, {
+        fetch(`/api/words/${key}/delete`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json; charset=utf-8",
