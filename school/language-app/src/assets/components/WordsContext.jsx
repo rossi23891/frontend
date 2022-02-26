@@ -59,7 +59,7 @@ function WordsContextProvider(props) {
     }
 
     const editWord = (record) => {
-        fetch(`/api/words/${record.key}/update`, {
+        fetch(`/api/words/${record.id}/update`, {
             method: "POST",
             body: JSON.stringify(record),
             headers: {
@@ -73,7 +73,14 @@ function WordsContextProvider(props) {
                     throw new Error('Oops - api error while editing data ...');
                 }
             })
-            .then(() => fillWords())
+            .then(response => {
+                if (response?.errors?.length) {
+                    throw new Error('Oops - api error while editing data...');
+                }
+                else {
+                    fillWords();
+                }
+            })
             .catch((error) => {
                 setError(error);
             });

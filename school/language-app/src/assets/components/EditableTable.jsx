@@ -3,7 +3,6 @@ import { Table, Input, InputNumber, Popconfirm, Form, Typography, Button } from 
 import 'antd/dist/antd.css';
 import '../../App.css'
 import { WordsContext } from './WordsContext';
-import { useEffect } from 'react';
 
 const EditableCell = ({
     editing,
@@ -49,7 +48,7 @@ function EditableTable() {
     const [editingKey, setEditingKey] = useState('');
     const [deletingKey, setDeletingKey] = useState('');
 
-    const isEditing = (record) => record.key === editingKey;
+    const isEditing = (record) => record.id === editingKey;
 
     const edit = (record) => {
         form.setFieldsValue({
@@ -59,16 +58,24 @@ function EditableTable() {
             tags: '',
             ...record,
         });
-        setEditingKey(record.key);
+        setEditingKey(record.id);
     };
 
     const cancel = () => {
         setEditingKey('');
     };
 
-    const save = async (key) => {
+    const save = (record) => {
         try {
-            const row = await form.validateFields();
+            let row = form.validateFields();
+            row = {
+                english: form.getFieldValue('english'),
+                russian: form.getFieldValue('russian'),
+                transcription: form.getFieldValue('transcription'),
+                tags: form.getFieldValue('tags'),
+                id: form.getFieldValue('id')
+            }
+            console.log("79 " + row);
             editWord(row);
             setEditingKey('');
         } catch (errInfo) {
@@ -84,7 +91,6 @@ function EditableTable() {
     };
 
     const handleAdd = async () => {
-        const newKey = data.length + 1;
         form.setFieldsValue({
             english: '',
             russian: '',
@@ -93,7 +99,6 @@ function EditableTable() {
         });
         const row = {
             english: 'bird',
-            id: { newKey },
             russian: 'птица',
             transcription: '[be:d]',
             tags: 'птицы',
@@ -136,7 +141,7 @@ function EditableTable() {
                 return editable ? (
                     <span>
                         <Typography.Link
-                            onClick={() => save(record.key)}
+                            onClick={() => save(record)}
                             style={{
                                 marginRight: 8,
                             }}
